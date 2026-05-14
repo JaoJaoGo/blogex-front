@@ -34,8 +34,10 @@ export function AuthProvider({ children }) {
      * Bootstrap da sessão.
      *
      * Executado uma única vez na inicialização da aplicação.
-     * Verifica se existe um token persistido e,
-     * caso exista, tenta recuperar o usuário autenticado.
+     * Tenta recuperar o usuário autenticado usando a sessão
+     * mantida via cookies do Sanctum.
+     *
+     * Em caso de erro, considera o usuário como não autenticado.
      */
     useEffect(() => {
         bootstrapAuth();

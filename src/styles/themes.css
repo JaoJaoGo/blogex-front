@@ -4,8 +4,8 @@
     --accent: #16a34a;
 }
 
-[data-author='ellen'] {
-    --bg: #0935fd;
-    --primary: #ec4899;
-    --accent: #db2777;
+[data-author='ellen']{
+    --bg:#0f172a;
+    --primary:#a855f7;
+    --accent:#ec4899;
 }

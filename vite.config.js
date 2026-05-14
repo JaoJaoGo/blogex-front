@@ -10,5 +10,19 @@ export default defineConfig({
       key: fs.readFileSync('certs/localhost-key.pem'),
       cert: fs.readFileSync('certs/localhost.pem'),
     },
+    proxy: {
+      '/api': {
+        target: 'https://blogex.test',
+        changeOrigin: true,
+        secure: false,
+        cookieDomainRewrite: 'localhost',
+      },
+      '/sanctum': {
+        target: 'https://blogex.test',
+        changeOrigin: true,
+        secure: false,
+        cookieDomainRewrite: 'localhost',
+      },
+    },
   },
 })

@@ -16,8 +16,6 @@ import api, {ensureCsrfCookie} from './api';
  * @returns {Promise<Object>} Dados de autenticação retornados pela API
  */
 export async function loginRequest({ email, password }) {
-    await ensureCsrfCookie();
-    
     const response = await api.post('/login', {
         email,
         password,
@@ -29,8 +27,7 @@ export async function loginRequest({ email, password }) {
 /**
  * Retorna os dados do usuário autenticado.
  *
- * Requer que o token de autenticação já esteja
- * configurado nos headers da instância Axios.
+ * Requer que a sessão esteja ativa via cookies do Sanctum.
  *
  * @returns {Promise<Object>} Dados do usuário autenticado
  */

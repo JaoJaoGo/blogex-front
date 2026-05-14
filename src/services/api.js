@@ -28,7 +28,9 @@ const api = axios.create({
  * - antes da primeira requisição autenticada
  */
 export async function ensureCsrfCookie() {
-    await api.get('/sanctum/csrf-cookie');
+    await axios.get(`${import.meta.env.VITE_API_URL}/sanctum/csrf-cookie`, {
+        withCredentials: true,
+    });
 }
 
 /**

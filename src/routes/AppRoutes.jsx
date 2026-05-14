@@ -1,31 +1,43 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Home from '../pages/Home';
+import Intro from '../pages/Intro';
 import Login from '../pages/Login';
+import JoaoHome from '../pages/JoaoHome';
+import EllenHome from '../pages/EllenHome';
+
 import MainLayout from '../components/layouts/MainLayout';
 
-/**
- * Define as rotas principais da aplicação.
- *
- * Estrutura de rotas:
- * - /login → Página de autenticação (layout independente)
- * - /      → Página inicial protegida pelo MainLayout
- *
- * O MainLayout atua como um layout compartilhado,
- * encapsulando páginas que exigem estrutura comum
- * (ex: header, sidebar, autenticação, etc.).
- *
- * @returns {JSX.Element} Estrutura de rotas da aplicação
- */
 export default function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/login' element={<Login />} />
 
+                {/* páginas independentes */}
+                <Route
+                    path="/"
+                    element={<Intro />}
+                />
+
+                <Route
+                    path="/login"
+                    element={<Login />}
+                />
+
+                {/* páginas com layout compartilhado */}
                 <Route element={<MainLayout />}>
-                    <Route path='/' element={<Home />} />
+
+                    <Route
+                        path="/joao"
+                        element={<JoaoHome />}
+                    />
+
+                    <Route
+                        path="/ellen"
+                        element={<EllenHome />}
+                    />
+
                 </Route>
+
             </Routes>
         </BrowserRouter>
     )
