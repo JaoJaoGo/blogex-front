@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+const APP_URL = import.meta.env.VITE_APP_URL;
+
 /**
  * Instância configurada do Axios para comunicação com a API.
  * 
@@ -11,8 +14,11 @@ import axios from 'axios';
  * para garantir consistência e facilitar manutenção.
  */
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: API_URL,
     withCredentials: true, // essencial para Sanctum SPA
+    withXSRFToken: true,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -28,8 +34,14 @@ const api = axios.create({
  * - antes da primeira requisição autenticada
  */
 export async function ensureCsrfCookie() {
-    await axios.get(`${import.meta.env.VITE_API_URL}/sanctum/csrf-cookie`, {
+    await axios.get(`${APP_URL}/sanctum/csrf-cookie`, {
         withCredentials: true,
+        withXSRFToken: true,
+        xsrfCookieName: 'XSRF-TOKEN',
+        xsrfHeaderName: 'X-XSRF-TOKEN',
+        headers: {
+            Accept: 'application/json'
+        }
     });
 }
 

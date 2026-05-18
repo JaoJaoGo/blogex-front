@@ -2,6 +2,7 @@ import { Outlet, useNavigate } from 'react-router-dom'
 import TypingLogo from '../ui/TypingLogo'
 import AuthorSwitch from '../ui/AuthorSwitch'
 import SlashTransition from '../animations/SlashTransition'
+import AdminFloatingMenu from '../admin/AdminFloatingMenu'
 import { useAuth } from '../../hooks/useAuth'
 
 export default function MainLayout() {
@@ -35,14 +36,12 @@ export default function MainLayout() {
             </header>
 
             <main className="p-6">
-                {isAuthenticated && (
-                    <button onClick={handleLogout}>
-                        Sair
-                    </button>
-                )}
-
                 <Outlet />
             </main>
+
+            {isAuthenticated && (
+                <AdminFloatingMenu onLogout={handleLogout} />
+            )}
         </div>
     )
 }

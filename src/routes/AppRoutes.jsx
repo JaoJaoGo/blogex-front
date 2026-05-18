@@ -1,17 +1,18 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Intro from '../pages/Intro';
-import Login from '../pages/Login';
 import JoaoHome from '../pages/JoaoHome';
 import EllenHome from '../pages/EllenHome';
+import Login from '../pages/Login';
+import AdminTags from '../pages/AdminTags';
 
+import ProtectedRoute from './ProtectedRoute';
 import MainLayout from '../components/layouts/MainLayout';
 
 export default function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
-
                 {/* páginas independentes */}
                 <Route
                     path="/"
@@ -25,7 +26,6 @@ export default function AppRoutes() {
 
                 {/* páginas com layout compartilhado */}
                 <Route element={<MainLayout />}>
-
                     <Route
                         path="/joao"
                         element={<JoaoHome />}
@@ -36,8 +36,13 @@ export default function AppRoutes() {
                         element={<EllenHome />}
                     />
 
+                    <Route element={<ProtectedRoute />}>
+                        <Route
+                            path="/admin/tags"
+                            element={<AdminTags />}
+                        />
+                    </Route>
                 </Route>
-
             </Routes>
         </BrowserRouter>
     )
