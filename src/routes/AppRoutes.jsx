@@ -5,6 +5,9 @@ import JoaoHome from '../pages/JoaoHome';
 import EllenHome from '../pages/EllenHome';
 import Login from '../pages/Login';
 import AdminTags from '../pages/AdminTags';
+import CreatePost from '../pages/CreatePost';
+import EditPost from '../pages/EditPost';
+import PostDetails from '../pages/PostDetails';
 
 import ProtectedRoute from './ProtectedRoute';
 import MainLayout from '../components/layouts/MainLayout';
@@ -36,10 +39,25 @@ export default function AppRoutes() {
                         element={<EllenHome />}
                     />
 
+                    <Route
+                        path="/:author/post/:id"
+                        element={<PostDetails />}
+                    />
+
                     <Route element={<ProtectedRoute />}>
                         <Route
                             path="/admin/tags"
                             element={<AdminTags />}
+                        />
+
+                        <Route
+                            path="/admin/posts/create"
+                            element={<CreatePost />}
+                        />
+
+                        <Route
+                            path="/admin/posts/:id/edit"
+                            element={<EditPost />}
                         />
                     </Route>
                 </Route>

@@ -1,10 +1,13 @@
+import { useNavigate } from 'react-router-dom'
 import { Calendar, User } from 'lucide-react'
 import TagBadge from '../tags/TagBadge'
 
 export default function PostCard({ post }) {
+    const navigate = useNavigate()
+
     const imageUrl = post.image
-        ? `${import.meta.env.VITE_API_URL}/storage/${post.image}`
-        : '/images/placeholders/post-placeholder.png'
+        ? `${import.meta.env.VITE_APP_URL}/storage/${post.image}`
+        : `${import.meta.env.VITE_APP_URL}/storage/posts/no_image.jpg`
 
     const formattedDate = post.updatedAt
         ? new Intl.DateTimeFormat('pt-BR', {
@@ -87,6 +90,9 @@ export default function PostCard({ post }) {
                         hover:opacity-90
                         transition
                     "
+                    onClick={() => navigate(
+                        `/${post.author}/post/${post.id}`
+                    )}
                 >
                     Ler artigo
                 </button>
