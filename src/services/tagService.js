@@ -1,12 +1,17 @@
 import api from './api'
 
 export async function listTags(params = {}) {
-    const response = await api.get(
-        '/tags',
+    const response = await api.get('/tags',
         {
             params
         }
     )
+
+    return response.data
+}
+
+export async function listTagIcons() {
+    const response = await api.get('/tags/icons')
 
     return response.data
 }

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Plus } from 'lucide-react'
 import { useTags } from '../hooks/useTags'
+import { useTagIcons } from '../hooks/useTagIcons'
 import TagsTable from '../components/tags/TagsTable'
 import TagFormModal from '../components/tags/TagFormModal'
 import DeleteTagModal from '../components/tags/DeleteTagModal'
@@ -18,6 +19,12 @@ export default function AdminTags() {
         removeTag,
         setPage,
     } = useTags()
+
+    const {
+        icons,
+        loadingIcons,
+        iconsError,
+    } = useTagIcons()
 
     const [formModalOpen, setFormModalOpen] = useState(false)
     const [deleteModalOpen, setDeleteModalOpen] = useState(false)
@@ -70,9 +77,9 @@ export default function AdminTags() {
                 </button>
             </div>
 
-            {error && (
+            {(error || iconsError) && (
                 <div className="mb-6 rounded-2xl border border-red-500/20 bg-red-500/10 px-5 py-4 text-sm text-red-300">
-                    {error}
+                    {error || iconsError}
                 </div>
             )}
 
@@ -91,6 +98,8 @@ export default function AdminTags() {
             <TagFormModal
                 isOpen={formModalOpen}
                 tag={selectedTag}
+                icons={icons}
+                loadingIcons={loadingIcons}
                 submitting={submitting}
                 onClose={() => setFormModalOpen(false)}
                 onSubmit={handleSubmit}

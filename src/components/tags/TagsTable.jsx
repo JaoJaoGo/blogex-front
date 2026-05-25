@@ -1,10 +1,11 @@
 import { Pencil, Trash2 } from 'lucide-react'
+import TagBadge from './TagBadge'
 
 export default function TagsTable({
     tags,
     loading,
     onEdit,
-    onDelete
+    onDelete,
 }) {
     if (loading) {
         return (
@@ -38,7 +39,11 @@ export default function TagsTable({
                         </th>
 
                         <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">
-                            Nome
+                            Tag
+                        </th>
+
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">
+                            Cor
                         </th>
 
                         <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">
@@ -57,8 +62,21 @@ export default function TagsTable({
                                 #{tag.id}
                             </td>
 
-                            <td className="px-6 py-4 text-sm font-medium text-white">
-                                {tag.name}
+                            <td className="px-6 py-4">
+                                <TagBadge tag={tag} />
+                            </td>
+
+                            <td className="px-6 py-4">
+                                <div className="flex items-center gap-2 text-sm text-gray-400">
+                                    <span
+                                        className="w-5 h-5 rounded-full border border-white/20"
+                                        style={{
+                                            backgroundColor: tag.color || '#22c55e',
+                                        }}
+                                    />
+
+                                    {tag.color || '-'}
+                                </div>
                             </td>
 
                             <td className="px-6 py-4">

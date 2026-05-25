@@ -1,4 +1,5 @@
 import { usePosts } from '../hooks/usePosts'
+import { usePublicTags } from '../hooks/usePublicTags'
 import PostListSection from '../components/posts/PostListSection'
 
 export default function EllenHome() {
@@ -10,10 +11,17 @@ export default function EllenHome() {
         error,
         setSearch,
         setPage,
+        toggleTag,
+        clearTags,
     } = usePosts({
         author: 'ellen',
         perPage: 6,
     })
+
+    const {
+        tags,
+        loadingTags,
+    } = usePublicTags()
 
     return (
         <PostListSection
@@ -23,7 +31,12 @@ export default function EllenHome() {
             loading={loading}
             error={error}
             search={filters.search}
+            tags={tags}
+            selectedTags={filters.tags}
+            loadingTags={loadingTags}
             onSearch={setSearch}
+            onToggleTag={toggleTag}
+            onClearTags={clearTags}
             onPageChange={setPage}
         />
     )

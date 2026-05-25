@@ -1,4 +1,5 @@
 import { usePosts } from '../hooks/usePosts'
+import { usePublicTags } from '../hooks/usePublicTags'
 import PostListSection from '../components/posts/PostListSection'
 
 export default function JoaoHome() {
@@ -10,10 +11,17 @@ export default function JoaoHome() {
         error,
         setSearch,
         setPage,
+        toggleTag,
+        clearTags,
     } = usePosts({
         author: 'joao',
         perPage: 6,
     })
+
+    const {
+        tags,
+        loadingTags,
+    } = usePublicTags()
 
     return (
         <PostListSection
@@ -23,7 +31,12 @@ export default function JoaoHome() {
             loading={loading}
             error={error}
             search={filters.search}
+            tags={tags}
+            selectedTags={filters.tags}
+            loadingTags={loadingTags}
             onSearch={setSearch}
+            onToggleTag={toggleTag}
+            onClearTags={clearTags}
             onPageChange={setPage}
         />
     )

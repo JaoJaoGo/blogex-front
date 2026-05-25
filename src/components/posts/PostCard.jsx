@@ -1,4 +1,5 @@
 import { Calendar, User } from 'lucide-react'
+import TagBadge from '../tags/TagBadge'
 
 export default function PostCard({ post }) {
     const imageUrl = post.image
@@ -39,22 +40,18 @@ export default function PostCard({ post }) {
 
             <div className="p-4">
                 <div className="flex gap-2 flex-wrap mb-3">
-                    {post.tags?.map(tag => (
-                        <span
-                            key={tag}
-                            className="
-                                px-2
-                                py-1
-                                rounded-md
-                                text-[10px]
-                                font-semibold
-                                bg-primary/25
-                                text-primary
-                            "
-                        >
-                            {tag}
-                        </span>
-                    ))}
+                    {post.tags?.map(tag => {
+                        const normalizedTag = typeof tag === 'string'
+                            ? { name: tag }
+                            : tag
+
+                        return (
+                            <TagBadge
+                                key={normalizedTag.id ?? normalizedTag.name}
+                                tag={normalizedTag}
+                            />
+                        )
+                    })}
                 </div>
 
                 <h2 className="font-bold text-lg mb-2">

@@ -2,6 +2,7 @@ import SearchBar from './SearchBar'
 import PostGrid from './PostGrid'
 import Pagination from './Pagination'
 import EmptyPosts from './EmptyPosts'
+import PostTagFilters from './PostTagFilters'
 
 export default function PostListSection({
     title,
@@ -10,7 +11,12 @@ export default function PostListSection({
     loading,
     error,
     search,
+    tags,
+    selectedTags,
+    loadingTags,
     onSearch,
+    onToggleTag,
+    onClearTags,
     onPageChange,
 }) {
     return (
@@ -24,21 +30,20 @@ export default function PostListSection({
                 onSearch={onSearch}
             />
 
-            <div className="mt-6 flex justify-center gap-3">
-                <span className="px-3 py-1 rounded-md bg-primary/25 text-primary text-xs font-semibold">
-                    UX Design
-                </span>
+            <PostTagFilters
+                tags={tags}
+                selectedTags={selectedTags}
+                loading={loadingTags}
+                onToggleTag={onToggleTag}
+                onClearTags={onClearTags}
+            />
 
-                <span className="px-3 py-1 rounded-md bg-primary/25 text-primary text-xs font-semibold">
-                    UI Design
-                </span>
-
-                <span className="px-3 py-1 rounded-md bg-accent/25 text-accent text-xs font-semibold">
-                    Design Gráfico
-                </span>
+            <div className="mt-16 mb-5 text-sm text-gray-400">
+                {selectedTags.length > 0
+                    ? `Filtrando por: ${selectedTags.join(', ')}`
+                    : ''
+                }
             </div>
-
-            <div className="mt-16 mb-5 text-sm text-gray-400"></div>
 
             {loading && (
                 <p className="text-gray-400">
