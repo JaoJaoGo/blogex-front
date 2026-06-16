@@ -60,3 +60,65 @@
 .post-editor-content u {
     text-decoration: underline;
 }
+
+.matrix-rain {
+    white-space: pre-line;
+    text-shadow: 0 0 10px currentColor;
+    animation-name: matrix-fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes matrix-fall {
+    from {
+        transform: translateY(-30%);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(160%);
+        opacity: 0;
+    }
+}
+
+.design-grid {
+    background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: radial-gradient(circle at center, black, transparent 70%);
+    animation: design-grid-move 8s linear infinite;
+}
+
+@keyframes design-grid-move {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 34px 34px;
+    }
+}
+
+.design-orb {
+    animation: design-float 5s ease-in-out infinite;
+}
+
+.design-orb-delay {
+    animation: design-float 6s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+@keyframes design-float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-18px) rotate(8deg);
+    }
+}

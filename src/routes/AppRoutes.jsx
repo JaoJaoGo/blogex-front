@@ -8,6 +8,8 @@ import AdminTags from '../pages/AdminTags';
 import CreatePost from '../pages/CreatePost';
 import EditPost from '../pages/EditPost';
 import PostDetails from '../pages/PostDetails';
+import Profile from '../pages/Profile';
+import AuthorAbout from '../pages/AuthorAbout'
 
 import ProtectedRoute from './ProtectedRoute';
 import MainLayout from '../components/layouts/MainLayout';
@@ -44,6 +46,11 @@ export default function AppRoutes() {
                         element={<PostDetails />}
                     />
 
+                    <Route
+                        path="/:author/sobre"
+                        element={<AuthorAbout />}
+                    />
+
                     <Route element={<ProtectedRoute />}>
                         <Route
                             path="/admin/tags"
@@ -58,6 +65,11 @@ export default function AppRoutes() {
                         <Route
                             path="/admin/posts/:id/edit"
                             element={<EditPost />}
+                        />
+
+                        <Route
+                            path="/admin/profile"
+                            element={<Profile />}
                         />
                     </Route>
                 </Route>

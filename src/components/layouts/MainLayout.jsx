@@ -27,7 +27,18 @@ export default function MainLayout() {
                 </div>
 
                 <div className="flex justify-center">
-                    <TypingLogo />
+                    <button
+                        type="button"
+                        onClick={() => navigate('/')}
+                        className="
+                            cursor-pointer
+                            transition
+                            hover:scale-[1.03]
+                            active:scale-[0.98]
+                        "
+                    >
+                        <TypingLogo />
+                    </button>
                 </div>
 
                 <div className="flex justify-end">

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
@@ -39,6 +40,17 @@ export default function PostEditor({
             },
         },
     })
+
+    useEffect(() => {
+        if (!editor) return
+
+        const currentContent = editor.getHTML()
+        const nextContent = value || ''
+
+        if (currentContent !== nextContent) {
+            editor.commands.setContent(nextContent, false)
+        }
+    }, [editor, value])
 
     if (!editor) {
         return null

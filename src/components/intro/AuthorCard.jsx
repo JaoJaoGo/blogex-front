@@ -28,20 +28,35 @@ export default function AuthorCard({
                 transition
             "
         >
-            <img
-                src={avatar}
-                alt={name}
+            <div
                 className="
-                    w-16
-                    h-16
-                    rounded-full
+                    w-24
+                    h-24
                     mx-auto
-                    mb-4
-                    object-cover
-                    border-2
-                    border-white/70
+                    mb-6
+                    rounded-full
+                    overflow-hidden
+                    border
+                    border-white/10
+                    bg-white/10
+                    flex
+                    items-center
+                    justify-center
+                    shadow-xl
                 "
-            />
+            >
+                {avatar ? (
+                    <img
+                        src={avatar}
+                        alt={name}
+                        className="w-full h-full object-cover"
+                    />
+                ) : (
+                    <span className="text-3xl font-black text-primary">
+                        {name?.charAt(0)}
+                    </span>
+                )}
+            </div>
 
             <h2 className="text-2xl font-bold mb-4">
                 {name}
