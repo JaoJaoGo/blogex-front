@@ -2,7 +2,7 @@ export default function MatrixBackground() {
     const columns = Array.from({ length: 32 })
 
     return (
-        <div className="absolute inset-0 overflow-hidden opacity-60">
+        <div className="absolute inset-0 overflow-hidden opacity-30">
             {columns.map((_, index) => (
                 <span
                     key={index}

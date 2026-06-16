@@ -1,9 +1,11 @@
 import { Outlet, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth'
+import { KonamiProvider } from '../../context/KonamiContext'
 import TypingLogo from '../ui/TypingLogo'
 import AuthorSwitch from '../ui/AuthorSwitch'
 import SlashTransition from '../animations/SlashTransition'
 import AdminFloatingMenu from '../admin/AdminFloatingMenu'
-import { useAuth } from '../../hooks/useAuth'
+import Footer from './Footer'
 
 export default function MainLayout() {
     const { isAuthenticated, signOut } = useAuth()
@@ -15,44 +17,48 @@ export default function MainLayout() {
     }
 
     return (
-        <div
-            className="min-h-screen text-white transition-colors duration-300 relative"
-            style={{ background: 'var(--bg)' }}
-        >
-            <SlashTransition />
+        <KonamiProvider disabled={isAuthenticated}>
+            <div
+                className="min-h-screen text-white transition-colors duration-300 relative"
+                style={{ background: 'var(--bg)' }}
+            >
+                <SlashTransition />
 
-            <header className="grid grid-cols-3 items-center p-6 border-b border-gray-800">
-                <div className="flex justify-start">
-                    <AuthorSwitch authorKey="joao" label="João" />
-                </div>
+                <header className="grid grid-cols-3 items-center p-6 border-b border-gray-800">
+                    <div className="flex justify-start">
+                        <AuthorSwitch authorKey="joao" label="João" />
+                    </div>
 
-                <div className="flex justify-center">
-                    <button
-                        type="button"
-                        onClick={() => navigate('/')}
-                        className="
-                            cursor-pointer
-                            transition
-                            hover:scale-[1.03]
-                            active:scale-[0.98]
-                        "
-                    >
-                        <TypingLogo />
-                    </button>
-                </div>
+                    <div className="flex justify-center">
+                        <button
+                            type="button"
+                            onClick={() => navigate('/')}
+                            className="
+                                cursor-pointer
+                                transition
+                                hover:scale-[1.03]
+                                active:scale-[0.98]
+                            "
+                        >
+                            <TypingLogo />
+                        </button>
+                    </div>
 
-                <div className="flex justify-end">
-                    <AuthorSwitch authorKey="ellen" label="Ellen" />
-                </div>
-            </header>
+                    <div className="flex justify-end">
+                        <AuthorSwitch authorKey="ellen" label="Ellen" />
+                    </div>
+                </header>
 
-            <main className="p-6">
-                <Outlet />
-            </main>
+                <main className="p-6">
+                    <Outlet />
+                </main>
 
-            {isAuthenticated && (
-                <AdminFloatingMenu onLogout={handleLogout} />
-            )}
-        </div>
+                {isAuthenticated && (
+                    <AdminFloatingMenu onLogout={handleLogout} />
+                )}
+
+                <Footer showKonami={!isAuthenticated} />
+            </div>
+        </KonamiProvider>
     )
 }

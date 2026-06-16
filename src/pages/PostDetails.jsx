@@ -5,7 +5,6 @@ import { showPost } from '../services/postService'
 import { useAuth } from '../hooks/useAuth'
 import { getAuthorKey } from '../utils/getAuthorKey'
 import TagBadge from '../components/tags/TagBadge'
-import AuthorBadge from '../components/posts/AuthorBadge'
 
 export default function PostDetails() {
     const { id } = useParams()
@@ -156,12 +155,52 @@ export default function PostDetails() {
             </div>
 
             <div className="mb-10 flex flex-wrap items-center gap-4 text-sm text-gray-400">
-                <AuthorBadge author={post.author} />
+                <div className="flex items-center gap-3">
+                    {post.user?.profile_photo_url ? (
+                        <img
+                            src={post.user.profile_photo_url}
+                            alt={post.user?.name}
+                            className="
+                                h-11
+                                w-11
+                                rounded-full
+                                object-cover
+                                border
+                                border-white/10
+                                shadow-lg
+                            "
+                        />
+                    ) : (
+                        <div
+                            className="
+                                h-11
+                                w-11
+                                rounded-full
+                                bg-white/10
+                                border
+                                border-white/10
+                                flex
+                                items-center
+                                justify-center
+                                font-bold
+                                text-primary
+                            "
+                        >
+                            {post.user?.name?.charAt(0)}
+                        </div>
+                    )}
 
-                <span className="flex items-center gap-2">
-                    <Calendar size={15} />
-                    {formattedDate}
-                </span>
+                    <div className="flex flex-col">
+                        <span className="font-semibold text-white">
+                            {post.user?.name}
+                        </span>
+
+                        <div className="flex items-center gap-2 text-gray-400 text-xs">
+                            <Calendar size={13} />
+                            {formattedDate}
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div

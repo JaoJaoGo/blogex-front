@@ -1,15 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ArrowLeft, LockKeyhole } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
 import { useNavigate } from 'react-router-dom'
 import TypingLogo from '../components/ui/TypingLogo'
 
 export default function Login() {
-    const { signIn, loading, error } = useAuth()
+    const { signIn, loading, error, isAuthenticated } = useAuth()
     const navigate = useNavigate()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/')
+        }
+    }, [isAuthenticated, navigate])
 
     async function handleSubmit(event) {
         event.preventDefault()

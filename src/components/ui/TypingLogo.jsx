@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
-const text = "Blogex"
+const text = "BLOGEX"
 
 /**
  * Componente responsável por exibir o logo da aplicação
