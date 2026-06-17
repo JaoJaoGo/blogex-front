@@ -1,22 +1,30 @@
 import { useState } from 'react'
-import { Plus, Pencil, Trash2 } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
 import { useProfileForm } from '../hooks/useProfileForm'
 import { useExperiences } from '../hooks/useExperiences'
+import { useSkills } from '../hooks/useSkills'
 import PostEditor from '../components/posts/PostEditor'
 import ExperienceList from '../components/profile/ExperienceList'
 import ExperienceFormModal from '../components/profile/ExperienceFormModal'
 import DeleteExperienceModal from '../components/profile/DeleteExperienceModal'
+import SkillList from '../components/profile/SkillList'
+import SkillFormModal from '../components/profile/SkillFormModal'
+import DeleteSkillModal from '../components/profile/DeleteSkillModal'
 
 export default function Profile() {
     const { user } = useAuth()
     const profile = useProfileForm(user)
     const experiences = useExperiences()
+    const skills = useSkills()
 
     const [message, setMessage] = useState(null)
     const [experienceModalOpen, setExperienceModalOpen] = useState(false)
     const [deleteExperienceModalOpen, setDeleteExperienceModalOpen] = useState(false)
     const [selectedExperience, setSelectedExperience] = useState(null)
+    const [skillModalOpen, setSkillModalOpen] = useState(false)
+    const [deleteSkillModalOpen, setDeleteSkillModalOpen] = useState(false)
+    const [selectedSkill, setSelectedSkill] = useState(null)
 
     async function handleProfileSubmit(event) {
         event.preventDefault()
@@ -56,6 +64,30 @@ export default function Profile() {
         }
 
         await experiences.storeExperience(payload)
+    }
+
+    function handleCreateSkill() {
+        setSelectedSkill(null)
+        setSkillModalOpen(true)
+    }
+
+    function handleEditSkill(skill) {
+        setSelectedSkill(skill)
+        setSkillModalOpen(true)
+    }
+
+    function handleDeleteSkill(skill) {
+        setSelectedSkill(skill)
+        setDeleteSkillModalOpen(true)
+    }
+
+    async function handleSubmitSkill(payload) {
+        if (selectedSkill) {
+            await skills.editSkill(selectedSkill.id, payload)
+            return
+        }
+
+        await skills.storeSkill(payload)
     }
 
     function getProfilePhotoPreview() {
@@ -282,6 +314,44 @@ export default function Profile() {
                 <div className="flex items-center justify-between mb-5">
                     <div>
                         <h2 className="text-xl font-bold">
+                            Habilidades
+                        </h2>
+
+                        <p className="text-sm text-gray-400">
+                            Gerencie suas principais habilidades técnicas e criativas.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        onClick={handleCreateSkill}
+                        className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-white text-sm font-semibold"
+                    >
+                        <Plus size={16} />
+                        Adicionar
+                    </button>
+                </div>
+
+                {skills.loading && (
+                    <p className="text-sm text-gray-400">
+                        Carregando habilidades...
+                    </p>
+                )}
+
+                {!skills.loading && (
+                    <SkillList
+                        skills={skills.skills}
+                        editable
+                        onEdit={handleEditSkill}
+                        onDelete={handleDeleteSkill}
+                    />
+                )}
+            </section>
+
+            <section className="rounded-3xl border border-white/10 bg-white/[0.05] p-6 shadow-2xl">
+                <div className="flex items-center justify-between mb-5">
+                    <div>
+                        <h2 className="text-xl font-bold">
                             Experiências
                         </h2>
 
@@ -335,6 +405,22 @@ export default function Profile() {
                 submitting={experiences.submitting}
                 onClose={() => setDeleteExperienceModalOpen(false)}
                 onConfirm={experiences.removeExperience}
+            />
+
+            <SkillFormModal
+                isOpen={skillModalOpen}
+                skill={selectedSkill}
+                submitting={skills.submitting}
+                onClose={() => setSkillModalOpen(false)}
+                onSubmit={handleSubmitSkill}
+            />
+
+            <DeleteSkillModal
+                isOpen={deleteSkillModalOpen}
+                skill={selectedSkill}
+                submitting={skills.submitting}
+                onClose={() => setDeleteSkillModalOpen(false)}
+                onConfirm={skills.removeSkill}
             />
         </section>
     )

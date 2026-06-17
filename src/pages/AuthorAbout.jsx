@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useAuthorProfile } from '../hooks/useAuthorProfile'
 
 import ExperienceList from '../components/profile/ExperienceList'
+import SkillList from '../components/profile/SkillList'
 import MatrixBackground from '../components/authors/MatrixBackground'
 import DesignBackground from '../components/authors/DesignBackground'
 
@@ -204,6 +205,25 @@ export default function AuthorAbout() {
                             }}
                         />
                     )}
+                </div>
+
+                <div
+                    className="
+                        mt-8
+                        rounded-3xl
+                        border
+                        border-white/10
+                        bg-white/[0.08]
+                        backdrop-blur-xl
+                        p-8
+                        shadow-[0_8px_40px_rgba(0,0,0,0.35)]
+                    "
+                >
+                    <h2 className="text-2xl font-bold mb-6">
+                        Habilidades
+                    </h2>
+
+                    <SkillList skills={profile.skills ?? []} />
                 </div>
 
                 <div

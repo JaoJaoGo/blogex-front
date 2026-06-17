@@ -7,6 +7,8 @@ import SlashTransition from '../animations/SlashTransition'
 import AdminFloatingMenu from '../admin/AdminFloatingMenu'
 import Footer from './Footer'
 
+import DevelopmentNotice from './DevelopmentNotice'
+
 export default function MainLayout() {
     const { isAuthenticated, signOut } = useAuth()
     const navigate = useNavigate()
@@ -48,6 +50,8 @@ export default function MainLayout() {
                         <AuthorSwitch authorKey="ellen" label="Ellen" />
                     </div>
                 </header>
+
+                <DevelopmentNotice />
 
                 <main className="p-6">
                     <Outlet />
