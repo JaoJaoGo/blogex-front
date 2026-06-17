@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import { useAuthor } from '../../context/AuthorContext'
-import { useIntroAuthors } from '../../hooks/useIntroAuthors'
+import { useAuthor } from '../../../context/AuthorContext'
+import { useIntroAuthors } from '../../../hooks/useIntroAuthors'
 
 export default function AuthorSwitch({ authorKey, label }) {
     const { author, changeAuthor, isTransitioning } = useAuthor()

@@ -1,4 +1,4 @@
-import { useKonami } from '../../context/KonamiContext'
+import { useKonami } from '../../../context/KonamiContext'
 
 const SYMBOLS = {
     ArrowUp: '▲',

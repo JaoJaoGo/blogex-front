@@ -1,8 +1,8 @@
 import { UserRound } from 'lucide-react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-import MatrixBackground from './MatrixBackground'
-import DesignBackground from './DesignBackground'
+import MatrixBackground from '../shared/effects/MatrixBackground'
+import DesignBackground from '../shared/effects/DesignBackground'
 
 export default function AuthorHeroSection({
     author,

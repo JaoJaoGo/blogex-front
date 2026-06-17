@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useAuthor } from '../../context/AuthorContext'
+import { useAuthor } from '../../../context/AuthorContext'
 
 /**
  * Componente responsável por exibir a animação de transição

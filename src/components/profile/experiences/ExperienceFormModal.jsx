@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
-import PostEditor from '../posts/PostEditor'
+import PostEditor from '../../posts/PostEditor'
 
 const initialForm = {
     name: '',

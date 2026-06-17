@@ -1,9 +1,9 @@
 import { Outlet, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import { KonamiProvider } from '../../context/KonamiContext'
-import TypingLogo from '../ui/TypingLogo'
-import AuthorSwitch from '../ui/AuthorSwitch'
-import SlashTransition from '../animations/SlashTransition'
+import TypingLogo from './header/TypingLogo'
+import AuthorSwitch from '../layouts/header/AuthorSwitch'
+import SlashTransition from '../shared/transitions/SlashTransition'
 import AdminFloatingMenu from '../admin/AdminFloatingMenu'
 import Footer from './Footer'
 

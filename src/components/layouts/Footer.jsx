@@ -1,5 +1,5 @@
 import { Heart } from 'lucide-react'
-import KonamiHint from './KonamiHint'
+import KonamiHint from '../easter-eggs/konami/KonamiHint'
 
 export default function Footer({ showKonami = true }) {
     const currentYear = new Date().getFullYear()

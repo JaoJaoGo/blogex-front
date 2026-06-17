@@ -5,12 +5,12 @@ import { useProfileForm } from '../hooks/useProfileForm'
 import { useExperiences } from '../hooks/useExperiences'
 import { useSkills } from '../hooks/useSkills'
 import PostEditor from '../components/posts/PostEditor'
-import ExperienceList from '../components/profile/ExperienceList'
-import ExperienceFormModal from '../components/profile/ExperienceFormModal'
-import DeleteExperienceModal from '../components/profile/DeleteExperienceModal'
-import SkillList from '../components/profile/SkillList'
-import SkillFormModal from '../components/profile/SkillFormModal'
-import DeleteSkillModal from '../components/profile/DeleteSkillModal'
+import ExperienceList from '../components/profile/experiences/ExperienceList'
+import ExperienceFormModal from '../components/profile/experiences/ExperienceFormModal'
+import DeleteExperienceModal from '../components/profile/experiences/DeleteExperienceModal'
+import SkillList from '../components/profile/skills/SkillList'
+import SkillFormModal from '../components/profile/skills/SkillFormModal'
+import DeleteSkillModal from '../components/profile/skills/DeleteSkillModal'
 
 export default function Profile() {
     const { user } = useAuth()

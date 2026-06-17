@@ -1,5 +1,5 @@
 import { Pencil, Trash2 } from 'lucide-react'
-import { getSkillIcon } from '../../utils/skillIcons'
+import { getSkillIcon } from '../../../utils/skillIcons'
 import SkillParticles from './SkillParticles'
 
 const LEVELS = {

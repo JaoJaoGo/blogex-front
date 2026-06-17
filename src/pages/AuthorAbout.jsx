@@ -4,10 +4,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAuthorProfile } from '../hooks/useAuthorProfile'
 
-import ExperienceList from '../components/profile/ExperienceList'
-import SkillList from '../components/profile/SkillList'
-import MatrixBackground from '../components/authors/MatrixBackground'
-import DesignBackground from '../components/authors/DesignBackground'
+import ExperienceList from '../components/profile/experiences/ExperienceList'
+import SkillList from '../components/profile/skills/SkillList'
+import MatrixBackground from '../components/shared/effects/MatrixBackground'
+import DesignBackground from '../components/shared/effects/DesignBackground'
 
 export default function AuthorAbout() {
     const { author } = useParams()

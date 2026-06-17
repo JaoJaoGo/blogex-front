@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { ArrowLeft, LockKeyhole } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
 import { useNavigate } from 'react-router-dom'
-import TypingLogo from '../components/ui/TypingLogo'
+import TypingLogo from '../components/layouts/header/TypingLogo'
 
 export default function Login() {
     const { signIn, loading, error, isAuthenticated } = useAuth()
