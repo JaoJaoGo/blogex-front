@@ -154,3 +154,14 @@
         opacity: 0;
     }
 }
+
+@media (max-width: 640px) {
+    .post-editor-content ul,
+    .post-editor-content ol {
+        padding-left: 1.1rem;
+    }
+
+    .post-editor-content li {
+        padding-left: 0.1rem;
+    }
+}

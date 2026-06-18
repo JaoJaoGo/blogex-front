@@ -15,25 +15,29 @@ export default function AuthorCard({
             whileHover={{ y: -6, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="
-                w-[300px]
+                w-full
+                max-w-[320px]
                 rounded-2xl
                 bg-black/25
                 border
                 border-white/5
                 shadow-2xl
-                px-8
-                py-7
+                px-6
+                py-6
                 text-center
                 backdrop-blur-md
                 transition
+                md:w-[300px]
+                md:px-8
+                md:py-7
             "
         >
             <div
                 className="
-                    w-24
-                    h-24
+                    w-20
+                    h-20
                     mx-auto
-                    mb-6
+                    mb-5
                     rounded-full
                     overflow-hidden
                     border
@@ -43,6 +47,9 @@ export default function AuthorCard({
                     items-center
                     justify-center
                     shadow-xl
+                    md:w-24
+                    md:h-24
+                    md:mb-6
                 "
             >
                 {avatar ? (
@@ -58,7 +65,7 @@ export default function AuthorCard({
                 )}
             </div>
 
-            <h2 className="text-2xl font-bold mb-4">
+            <h2 className="text-xl font-bold leading-tight mb-3 md:text-2xl md:mb-4">
                 {name}
             </h2>
 
@@ -66,7 +73,7 @@ export default function AuthorCard({
                 {description}
             </p>
 
-            <div className="flex justify-center gap-2 flex-wrap mb-7">
+            <div className="flex justify-center gap-2 flex-wrap mb-6 md:mb-7">
                 {tags.map(tag => (
                     <span
                         key={tag}
@@ -91,7 +98,7 @@ export default function AuthorCard({
                 className={`
                     w-full
                     rounded-full
-                    py-2
+                    py-2.5
                     text-sm
                     font-semibold
                     ${variant === 'joao'

@@ -36,6 +36,10 @@ export default function MainLayout() {
                             type="button"
                             onClick={() => navigate('/')}
                             className="
+                                flex
+                                flex-col
+                                items-center
+                                gap-1
                                 cursor-pointer
                                 transition
                                 hover:scale-[1.03]
@@ -43,6 +47,19 @@ export default function MainLayout() {
                             "
                         >
                             <TypingLogo />
+
+                            <span
+                                className="
+                                    text-[9px]
+                                    font-bold
+                                    uppercase
+                                    tracking-[0.28em]
+                                    text-primary/70
+                                    leading-none
+                                "
+                            >
+                                Beta
+                            </span>
                         </button>
                     </div>
 

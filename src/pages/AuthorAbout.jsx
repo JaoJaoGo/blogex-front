@@ -40,9 +40,11 @@ export default function AuthorAbout() {
                 relative
                 min-h-[calc(100vh-120px)]
                 overflow-hidden
-                rounded-[2rem]
-                p-8
+                p-4
+                sm:p-6
                 md:p-10
+                rounded-[1.5rem]
+                md:rounded-[2rem]
                 shadow-2xl
                 border
                 border-white/10
@@ -86,7 +88,9 @@ export default function AuthorAbout() {
                         border-white/10
                         bg-white/[0.06]
                         backdrop-blur-xl
-                        p-8
+                        p-4
+                        sm:p-6
+                        md:p-8
                         shadow-[0_8px_40px_rgba(0,0,0,0.35)]
                     "
                 >
@@ -129,7 +133,7 @@ export default function AuthorAbout() {
                         </div>
 
                         <div className="flex-1">
-                            <h1 className="text-4xl font-black">
+                            <h1 className="text-3xl font-black leading-tight md:text-4xl">
                                 {profile.name}
                             </h1>
 
@@ -209,13 +213,16 @@ export default function AuthorAbout() {
 
                 <div
                     className="
-                        mt-8
+                        mt-6
+                        p-4
+                        sm:p-6
+                        md:mt-8
+                        md:p-8
                         rounded-3xl
                         border
                         border-white/10
                         bg-white/[0.08]
                         backdrop-blur-xl
-                        p-8
                         shadow-[0_8px_40px_rgba(0,0,0,0.35)]
                     "
                 >
@@ -228,13 +235,16 @@ export default function AuthorAbout() {
 
                 <div
                     className="
-                        mt-8
+                        mt-6
+                        p-4
+                        sm:p-6
+                        md:mt-8
+                        md:p-8
                         rounded-3xl
                         border
                         border-white/10
                         bg-white/[0.06]
                         backdrop-blur-xl
-                        p-8
                         shadow-[0_8px_40px_rgba(0,0,0,0.35)]
                     "
                 >

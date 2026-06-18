@@ -61,35 +61,32 @@ export default function Footer({ showKonami = true }) {
                 <div
                     className="
                         flex
+                        flex-col
                         items-center
                         justify-center
                         gap-2
-                        flex-wrap
                     "
                 >
-                    <span>
-                        © {currentYear} Blogex. Todos os direitos reservados.
-                    </span>
-
-                    <span className="hidden md:inline">
-                        •
-                    </span>
+                    <p>
+                        © {currentYear} Blogex. Todos os direitos reservados. • Desenvolvido com{' '}
+                        <Heart
+                            size={14}
+                            className="inline text-primary"
+                            fill="currentColor"
+                        />{' '}
+                        por João e Ellen
+                    </p>
 
                     <span
                         className="
-                            flex
-                            items-center
-                            gap-1
+                            text-[10px]
+                            font-semibold
+                            uppercase
+                            tracking-[0.24em]
+                            text-gray-500
                         "
                     >
-                        Desenvolvido com
-
-                        <Heart
-                            size={14}
-                            className="text-red-500 fill-red-500"
-                        />
-
-                        por João e Ellen
+                        V. 1.0
                     </span>
                 </div>
             </div>

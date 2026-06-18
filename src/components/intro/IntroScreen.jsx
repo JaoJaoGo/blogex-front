@@ -29,7 +29,13 @@ export default function IntroScreen() {
 
     return (
         <section
-            className="min-h-screen overflow-hidden text-white relative"
+            className="
+                relative
+                h-svh
+                overflow-hidden
+                text-white
+                md:min-h-screen
+            "
             style={{ background: 'var(--bg)' }}
         >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_35%)]" />
@@ -37,34 +43,44 @@ export default function IntroScreen() {
             <motion.div
                 initial={false}
                 animate={{
-                    top: typingCompleted ? '28%' : '50%',
                     scale: typingCompleted ? 0.72 : 1,
                 }}
                 transition={{
                     duration: 0.8,
                     ease: 'easeInOut',
                 }}
-                className="
+                className={`
                     absolute
                     inset-x-0
                     z-10
                     flex
                     justify-center
+                    px-4
                     -translate-y-1/2
                     will-change-transform
-                "
+                    transition-[top]
+                    duration-700
+                    ease-in-out
+                    ${typingCompleted
+                        ? 'top-[13%] sm:top-[16%] md:top-[28%]'
+                        : 'top-1/2'
+                    }
+                `}
             >
                 <h1
                     className="
-                        text-5xl
-                        md:text-6xl
+                        max-w-[92vw]
+                        text-center
+                        text-[clamp(1.7rem,8vw,3.75rem)]
                         font-black
                         uppercase
                         tracking-wide
-                        text-center
                         text-white/75
                         leading-tight
-                        whitespace-nowrap
+                        whitespace-normal
+                        md:whitespace-nowrap
+                        md:text-5xl
+                        lg:text-6xl
                     "
                 >
                     <IntroTyping
@@ -89,29 +105,56 @@ export default function IntroScreen() {
                         className="
                             absolute
                             inset-x-0
-                            top-[42%]
+                            top-[28%]
+                            bottom-0
                             z-10
                             flex
                             justify-center
+                            overflow-y-auto
+                            overflow-x-hidden
+                            px-4
+                            pt-2
+                            pb-8
+                            md:top-[42%]
+                            md:bottom-auto
+                            md:overflow-visible
+                            md:px-0
+                            md:pt-0
+                            md:pb-0
                         "
                     >
-                        <AuthorCard
-                            name={authors.joao.name}
-                            variant="joao"
-                            avatar={authors.joao.profile_photo_url}
-                            description="Conteúdos sobre desenvolvimento, tecnologia, projetos, ideias e algumas maluquices controladas."
-                            tags={['Laravel', 'React', 'Dev']}
-                            onClick={() => handleSelectAuthor('joao')}
-                        />
+                        <div
+                            className="
+                                grid
+                                w-full
+                                max-w-[320px]
+                                grid-cols-1
+                                gap-4
+                                sm:max-w-[660px]
+                                sm:grid-cols-2
+                                md:max-w-none
+                                md:w-auto
+                                md:gap-0
+                            "
+                        >
+                            <AuthorCard
+                                name={authors.joao.name}
+                                variant="joao"
+                                avatar={authors.joao.profile_photo_url}
+                                description="Conteúdos sobre desenvolvimento, tecnologia, projetos, ideias e algumas maluquices controladas."
+                                tags={['Laravel', 'React', 'Dev']}
+                                onClick={() => handleSelectAuthor('joao')}
+                            />
 
-                        <AuthorCard
-                            name={authors.ellen.name}
-                            variant="ellen"
-                            avatar={authors.ellen.profile_photo_url}
-                            description="Textos, ideias, reflexões e conteúdos com a identidade própria da Ellen no Blogex."
-                            tags={['Blog', 'Textos', 'Ideias']}
-                            onClick={() => handleSelectAuthor('ellen')}
-                        />
+                            <AuthorCard
+                                name={authors.ellen.name}
+                                variant="ellen"
+                                avatar={authors.ellen.profile_photo_url}
+                                description="Textos, ideias, reflexões e conteúdos com a identidade própria da Ellen no Blogex."
+                                tags={['Blog', 'Textos', 'Ideias']}
+                                onClick={() => handleSelectAuthor('ellen')}
+                            />
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

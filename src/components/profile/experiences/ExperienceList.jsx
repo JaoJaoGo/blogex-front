@@ -15,18 +15,28 @@ export default function ExperienceList({
     }
 
     return (
-        <div className="relative space-y-6">
-            <div className="absolute left-4 top-3 bottom-3 w-px bg-white/10" />
+        <div className="relative space-y-5 md:space-y-6">
+            <div
+                className="
+                    absolute
+                    left-2
+                    top-3
+                    bottom-3
+                    w-px
+                    bg-white/10
+                    md:left-4
+                "
+            />
 
             {sortedExperiences.map((experience, index) => (
                 <div
                     key={experience.id}
-                    className="relative pl-12"
+                    className="relative pl-7 md:pl-12"
                 >
                     <div
                         className={`
                             absolute
-                            left-[9px]
+                            left-[3px]
                             top-2
                             h-4
                             w-4
@@ -35,22 +45,42 @@ export default function ExperienceList({
                             border-primary
                             bg-[#0b1120]
                             shadow-[0_0_18px_var(--primary)]
+                            md:left-[9px]
                             ${index === 0 ? 'scale-110' : ''}
                         `}
                     />
 
-                    <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-                        <div className="flex items-start justify-between gap-4">
-                            <div>
-                                <h3 className="font-bold">
+                    <div
+                        className="
+                            min-w-0
+                            rounded-2xl
+                            border
+                            border-white/10
+                            bg-white/[0.04]
+                            p-4
+                            sm:p-5
+                        "
+                    >
+                        <div
+                            className="
+                                flex
+                                flex-col
+                                gap-4
+                                sm:flex-row
+                                sm:items-start
+                                sm:justify-between
+                            "
+                        >
+                            <div className="min-w-0">
+                                <h3 className="font-bold leading-snug break-words">
                                     {experience.name}
                                 </h3>
 
-                                <p className="text-sm text-gray-400">
+                                <p className="text-sm text-gray-400 break-words">
                                     {experience.workplace}
                                 </p>
 
-                                <p className="text-xs text-gray-500 mt-1">
+                                <p className="text-xs text-gray-500 mt-1 leading-relaxed">
                                     {formatDate(experience.start_date)} — {
                                         experience.is_current
                                             ? 'Atual'
@@ -65,7 +95,7 @@ export default function ExperienceList({
                             </div>
 
                             {editable && (
-                                <div className="flex gap-2">
+                                <div className="flex shrink-0 gap-2">
                                     <button
                                         type="button"
                                         onClick={() => onEdit?.(experience)}
@@ -87,7 +117,16 @@ export default function ExperienceList({
 
                         {experience.description && (
                             <div
-                                className="post-editor-content mt-4"
+                                className="
+                                    post-editor-content
+                                    mt-4
+                                    max-w-none
+                                    break-words
+                                    text-sm
+                                    leading-7
+                                    md:text-base
+                                    md:leading-8
+                                "
                                 dangerouslySetInnerHTML={{ __html: experience.description }}
                             />
                         )}
