@@ -13,6 +13,8 @@ export function useTags() {
     const [filters, setFilters] = useState({
         page: 1,
         perPage: 10,
+        sort: 'id',
+        direction: 'asc',
     })
 
     const [loading, setLoading] = useState(true)

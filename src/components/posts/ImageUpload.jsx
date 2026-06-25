@@ -1,6 +1,26 @@
 import { ImagePlus, Trash2 } from 'lucide-react'
 import { useMemo } from 'react'
 
+function getStorageImageUrl(imagePath) {
+    if (!imagePath) {
+        return null
+    }
+
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+        return imagePath
+    }
+
+    const appUrl = import.meta.env.VITE_APP_URL || window.location.origin
+    const normalizedAppUrl = appUrl.replace(/\/$/, '')
+    const normalizedImagePath = imagePath.replace(/^\/+/, '')
+
+    if (normalizedImagePath.startsWith('storage/')) {
+        return `${normalizedAppUrl}/${normalizedImagePath}`
+    }
+
+    return `${normalizedAppUrl}/storage/${normalizedImagePath}`
+}
+
 export default function ImageUpload({
     image,
     currentImage,
@@ -14,7 +34,7 @@ export default function ImageUpload({
         }
 
         if (currentImage && !removeImage) {
-            return `${import.meta.env.VITE_API_URL}/storage/${currentImage}`
+            return getStorageImageUrl(currentImage)
         }
 
         return null

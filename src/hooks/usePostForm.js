@@ -7,6 +7,7 @@ const INITIAL_FORM = {
     content: '',
     image: null,
     author: '',
+    user: [],
     tags: [],
     remove_image: false,
 }
@@ -111,6 +112,7 @@ function normalizeInitialData(post) {
         image: null,
         currentImage: post.image ?? null,
         author: post.author ?? '',
+        user: post.user ?? '',
         tags: normalizeTags(post.tags),
         remove_image: false,
     }
@@ -133,6 +135,7 @@ function normalizePayload(form) {
         content: form.content,
         image: form.image,
         author: form.author,
+        user: form.user,
         tags: form.tags,
         remove_image: form.remove_image,
     }

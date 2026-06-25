@@ -39,7 +39,10 @@ export default function PostForm({
                 </div>
 
                 {form.author && (
-                    <AuthorBadge author={form.author} />
+                    <AuthorBadge 
+                        author={form.user?.name ?? form.author} 
+                        avatar={form.user?.profile_photo_url} 
+                    />
                 )}
             </div>
 

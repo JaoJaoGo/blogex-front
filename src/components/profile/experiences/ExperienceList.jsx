@@ -152,24 +152,44 @@ function sortExperiences(a, b) {
     return bDate - aDate
 }
 
-function formatDate(date) {
+function parseDateOnly(date) {
     if (!date) {
+        return null
+    }
+
+    const [year, month, day] = date.split('T')[0].split('-').map(Number)
+
+    if (!year || !month || !day) {
+        return null
+    }
+
+    return new Date(year, month - 1, day)
+}
+
+function formatDate(date) {
+    const parsedDate = parseDateOnly(date)
+
+    if (!parsedDate) {
         return ''
     }
 
-    return new Date(date).toLocaleDateString('pt-BR')
+    return parsedDate.toLocaleDateString('pt-BR')
 }
 
 function formatExperienceDuration(startDate, endDate) {
-    if (!startDate) {
+    const start = parseDateOnly(startDate)
+    const end = endDate ? parseDateOnly(endDate) : new Date()
+
+    if (!start || !end) {
         return ''
     }
 
-    const start = new Date(startDate)
-    const end = endDate ? new Date(endDate) : new Date()
-
     let years = end.getFullYear() - start.getFullYear()
     let months = end.getMonth() - start.getMonth()
+
+    if (end.getDate() < start.getDate()) {
+        months--
+    }
 
     if (months < 0) {
         years--

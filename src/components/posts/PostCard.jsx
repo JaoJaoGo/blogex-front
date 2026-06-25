@@ -66,10 +66,21 @@ export default function PostCard({ post }) {
                 </p>
 
                 <div className="flex gap-4 text-xs text-gray-400 mb-4">
-                    <span className="flex items-center gap-1">
-                        <User size={12} />
-                        {post.author}
-                    </span>
+                    <div className="flex items-center gap-2">
+                        {post.user?.profile_photo_url ? (
+                            <img
+                                src={post.user.profile_photo_url}
+                                alt={post.user?.name}
+                                className="h-5 w-5 rounded-full object-cover border border-white/10"
+                            />
+                        ) : (
+                            <User size={14} />
+                        )}
+
+                        <span>
+                            {post.user?.name ?? post.author}
+                        </span>
+                    </div>
 
                     <span className="flex items-center gap-1">
                         <Calendar size={12} />

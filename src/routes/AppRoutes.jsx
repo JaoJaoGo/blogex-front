@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Intro from '../pages/Intro';
+import ScrollToTop from '../components/shared/ScrollToTop';
 import JoaoHome from '../pages/JoaoHome';
 import EllenHome from '../pages/EllenHome';
 import Login from '../pages/Login';
@@ -17,6 +18,7 @@ import MainLayout from '../components/layouts/MainLayout';
 export default function AppRoutes() {
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <Routes>
                 {/* páginas independentes */}
                 <Route

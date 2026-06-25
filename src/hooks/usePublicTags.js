@@ -13,7 +13,7 @@ export function usePublicTags() {
 
             const response = await listTags({
                 perPage: 100,
-                sort: 'name',
+                sort: 'id',
                 direction: 'asc',
             })
 

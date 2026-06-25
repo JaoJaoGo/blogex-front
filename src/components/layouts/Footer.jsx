@@ -86,7 +86,7 @@ export default function Footer({ showKonami = true }) {
                             text-gray-500
                         "
                     >
-                        V. 1.0
+                        V. 1.1
                     </span>
                 </div>
             </div>
